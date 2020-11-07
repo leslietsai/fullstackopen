@@ -17,11 +17,15 @@ const ContactForm = (props) => {
           window.alert('Please fill out all the fields');
           return;
         }
-        if (props.persons.filter(person => person.name === newName).length !== 0) {
-          window.alert(`${newName} is already added to the phonebook`);
+        const person = props.persons.filter(person => person.name === newName)
+        if (person.length !== 0) {
+          const result = window.confirm(`${newName} is already added to the phonebook, update their number?`);
+          if (result) {
+            props.updatePersons(person[0].id, {...person[0], number: newNumber});
+          }
         } else {
           const nameObject = {name: newName, number: newNumber }
-          props.setPersons(props.persons.concat(nameObject));  
+          props.setPersons(nameObject);  
         }
         setNewName('');
         setNewNumber('');
