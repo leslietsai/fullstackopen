@@ -37,7 +37,7 @@ const App = () => {
     showMessage(`Updated ${contact.name}`);
   })
   .catch(error => {
-    showErrorMessage(`Unable to update contact.`)
+    showErrorMessage(`Unable to update contact: ${error.response.data.error}`)
   });
   }
 
@@ -48,7 +48,7 @@ const App = () => {
         showMessage(`Added ${contact.name}`)
       })
       .catch(error => {
-        showErrorMessage(`Unable to create contact.`)
+        showErrorMessage(`Unable to create contact: ${error.response.data.error}`)
       });
   }
 
